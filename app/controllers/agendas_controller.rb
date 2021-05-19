@@ -1,5 +1,5 @@
 class AgendasController < ApplicationController
-  before_action :set_agenda, only: %i[destroy]
+  before_action :set_agenda, only: [:destroy]
 
   def index
     @agendas = Agenda.all
@@ -11,8 +11,8 @@ class AgendasController < ApplicationController
   end
 
   def destroy
-    binding.irb
-
+    
+  
     @agenda.destroy
     redirect_to root_path
   end
@@ -31,6 +31,7 @@ class AgendasController < ApplicationController
   private
 
   def set_agenda
+    # binding.irb
     @agenda = Agenda.find(params[:id])
   end
 
