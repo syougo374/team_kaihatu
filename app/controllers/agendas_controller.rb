@@ -1,5 +1,5 @@
 class AgendasController < ApplicationController
-  # before_action :set_agenda, only: %i[show edit update destroy]
+  before_action :set_agenda, only: %i[destroy]
 
   def index
     @agendas = Agenda.all
@@ -8,6 +8,13 @@ class AgendasController < ApplicationController
   def new
     @team = Team.friendly.find(params[:team_id])
     @agenda = Agenda.new
+  end
+
+  def destroy
+    binding.irb
+
+    @agenda.destroy
+    redirect_to root_path
   end
 
   def create
@@ -28,6 +35,6 @@ class AgendasController < ApplicationController
   end
 
   def agenda_params
-    params.fetch(:agenda, {}).permit %i[title description]
+    params.fetch(:agenda, {}).permit %i[title description ]
   end
 end
