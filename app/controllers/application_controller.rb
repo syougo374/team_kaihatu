@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     user.keep_team_id = current_team.id
     user.save!
   end
-
+ 
   private
 
   def set_working_team
