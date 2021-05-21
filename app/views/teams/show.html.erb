@@ -12,7 +12,6 @@
             </div>
             <%= link_to I18n.t('views.messages.edit_team'), edit_team_path(@team), class: 'btn btn-success btn-block mt-3' %>
           </div>
-
           <div class="col-md-8">
             <div>
               <h5><%= I18n.t('views.messages.invite_team_member') %></h5>
@@ -41,7 +40,9 @@
                     <tr>
                       <td><%= image_tag 'default.jpg', size: '40x40' %></td>
                       <td><%= assign.user.email %></td>
+                      <% if current_user == assign.user || current_user == @team.owner_id %>
                       <td><%= link_to I18n.t('views.button.delete'), team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+                      <% end  %>
                       <% if current_user.id == @team.owner_id %>
                       <td><%= link_to I18n.t('views.button.change'), owner_change_team_path(@team,owner_id: assign.user_id), method: :patch, class: 'btn btn-sm btn-danger' %></td>
                       <% end %>
