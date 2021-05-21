@@ -19,5 +19,6 @@ class AssignMailer < ApplicationMailer
     # selectはアクティブレコードが返る
     # pluckは配列として返る
     # @email = users.select(:email)
+    
   end
 end
