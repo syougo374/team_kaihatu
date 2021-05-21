@@ -1,9 +1,19 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: %i[show edit update destroy]
+  before_action :set_team, only: %i[show edit update destroy owner_change]
 
   def index
     @teams = Team.all
+  end
+
+  def owner_change
+    # binding.irb
+    if @team.update(owner_params)
+      AssignMailer.owner_change_mail(@team.owner.email).deliver
+      redirect_to @team
+    else
+      render @team
+    end
   end
 
   def show
@@ -55,5 +65,9 @@ class TeamsController < ApplicationController
 
   def team_params
     params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id]
+  end
+
+  def owner_params
+    params.permit(:owner_id)
   end
 end

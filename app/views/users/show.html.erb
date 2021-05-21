@@ -41,6 +41,7 @@
                           <span><%= article.team.name %><%= I18n.t('views.common.team') %>　</span>
                           <span class="badge bg-primary"><%= article.agenda.title %></span>
                           <%= article.title %>
+                          <%# <%= link_to '削除',agenda_path(article.id),method: :delete,data:(confirm: 'are you sure?') %> %>
                         <% end %>
                         <br>
                         <%= l(article.created_at, format: :long) %><%= I18n.t('views.messages.posted_at') %>

@@ -9,6 +9,7 @@ gem 'rails', '~> 6.1.3.1'
 # Middleware
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
+gem 'seed-fu', '~> 2.3'
 
 # Frontend
 gem 'coderay'

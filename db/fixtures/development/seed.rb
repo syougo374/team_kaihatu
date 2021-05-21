@@ -64,3 +64,4 @@ Article.seed(
   { id: 15, user_id: 2, team_id: 3, agenda_id: 8, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug') },
   id: 16, user_id: 1, team_id: 3, agenda_id: 8, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug')
 )
+

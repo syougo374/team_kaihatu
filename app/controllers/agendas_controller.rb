@@ -1,6 +1,8 @@
 class AgendasController < ApplicationController
-  # before_action :set_agenda, only: %i[show edit update destroy]
+  before_action :set_agenda, only: %i[destroy]
+  before_action :authenticate_user!
 
+  # binding.irb
   def index
     @agendas = Agenda.all
   end
@@ -9,6 +11,23 @@ class AgendasController < ApplicationController
     @team = Team.friendly.find(params[:team_id])
     @agenda = Agenda.new
   end
+
+  def destroy
+    # @team = Team.find(params[:id])
+    @team = @agenda.team
+    # メンバー全員にメール送るため、@team.members
+    @users = @team.members
+    path = Rails.application.routes.recognize_path(request.referer)
+    # binding.irb
+    if current_user.id == @agenda.user_id || current_user.id == @team.owner_id
+      @agenda.destroy
+      AssignMailer.delete_agenda_mail(@users).deliver
+      redirect_to dashboard_path
+    else
+      redirect_to path
+    end
+  end
+
 
   def create
     @agenda = current_user.agendas.build(title: params[:title])
@@ -24,10 +43,11 @@ class AgendasController < ApplicationController
   private
 
   def set_agenda
+    # binding.irb
     @agenda = Agenda.find(params[:id])
   end
 
   def agenda_params
-    params.fetch(:agenda, {}).permit %i[title description]
+    params.fetch(:agenda, {}).permit %i[title description ]
   end
 end

@@ -205,6 +205,8 @@ ja:
     pm: 午後
   views:
     messages:
+      change_owner: 'オーナーが変わったよ〜'
+      delete_sitaYo: '議題を削除したよー！'
       create_agenda: 'アジェンダ作成に成功しました！'
       create_article: '記事作成に成功しました！'
       update_article: '記事更新に成功しました！'
@@ -259,6 +261,7 @@ ja:
       delete: '削除'
       create: '作成'
       invite: '招待'
+      change: '任命' 
     top:
       line1: 'このアプリケーションは、チームごと、議題ごとに別れて'
       line2: '特定のイシュー（議題）をメンバーで見やすく共有するためのアプリケーションです'
